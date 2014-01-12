@@ -1,0 +1,6 @@
+{% for l_match in l_match_info %}
+<p>{{ l_match.si }}</p>
+<p>{{ l_match.de }}</p>
+{% endfor %}
+<a href="{% url 'cricket:index' %}">Home Page</a>
+

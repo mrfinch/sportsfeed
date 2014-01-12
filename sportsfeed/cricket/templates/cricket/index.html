@@ -1,0 +1,14 @@
+<p><strong>International Matches</strong></p>
+{% for a_match in imp_match %}
+	<p>{{ a_match.si }}</p> 
+	<p>{{ a_match.de }}</p>
+{% endfor %}
+<br />
+<p><strong>All Matches (International and National) </strong></p>
+{% for match in match_info %}
+		<a href="{% url 'cricket:localmatch' match.id %}">{{ match.t1 }} vs {{ match.t2 }}</a>
+		<br />
+	
+{% endfor %}
+
+ 
