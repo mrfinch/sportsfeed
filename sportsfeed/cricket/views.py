@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import urllib2,json
+import cricnews
 # Create your views here.
 url = "http://cricscore-api.appspot.com/csa"
 def index(request):
@@ -24,8 +25,10 @@ def index(request):
 	print url_imp
 	req_imp = urllib2.urlopen(url_imp)
 	page_imp = req_imp.read()
-	page_json_imp = json.loads(page_imp)	
-	return render(request,'cricket/index.html',{'match_info':page_json,'imp_match':page_json_imp})	
+	page_json_imp = json.loads(page_imp)
+
+	news = cricnews.getnews()	
+	return render(request,'cricket/index.html',{'match_info':page_json,'imp_match':page_json_imp,'news':news})	
 
 def localmatch(request,l_id):
 	l_url = url + "?id=" + str(l_id)

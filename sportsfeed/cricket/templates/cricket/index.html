@@ -11,4 +11,10 @@
 	
 {% endfor %}
 
- 
+ <br />
+ <br />
+ {% for n in news %}
+ 	<a href="{{ n.link }}">{{ n.title }}</a>
+ 	<p>{{ n.description }}</p>
+ 	<p>{{ n.date }}</p>
+{% endfor %}
