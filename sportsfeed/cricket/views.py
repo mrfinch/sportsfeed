@@ -27,8 +27,8 @@ def index(request):
 	page_imp = req_imp.read()
 	page_json_imp = json.loads(page_imp)
 
-	news = cricnews.getnews()	
-	return render(request,'cricket/index.html',{'match_info':page_json,'imp_match':page_json_imp,'news':news})	
+		
+	return render(request,'cricket/index.html',{'match_info':page_json,'imp_match':page_json_imp})	
 
 def localmatch(request,l_id):
 	l_url = url + "?id=" + str(l_id)
@@ -38,3 +38,8 @@ def localmatch(request,l_id):
 	print l_url
 	print l_page_json
 	return render(request,'cricket/localmatch.html',{'l_match_info':l_page_json}) 
+
+def news(request):
+	news = cricnews.getnews()[:5]
+	fullnews = cricnews.getnews()[5:]
+	return render(request,'cricket/news.html',{'news':news,'fullnews':fullnews})	

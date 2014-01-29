@@ -1,20 +1,53 @@
+<! DOCTYPE html>
+{% load staticfiles %}
+{% for a_match in imp_match %}
+<title>{{ a_match.de }}</title>
+{% endfor %}
+<script type="text/javascript">
+	/*function loadframe(mid){
+		//document.getElementById("match_det").src=document.getElementById(mid).class+mid;
+		document.getElementById("match_det").style.display='block';
+		//document.writeln(document.getElementById("match_det").src);
+		//document.write(document.getElementById(mid).class+mid);
+	}*/
+</script>
+<style>
+	#match_det{display:none;}
+</style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="{% static 'cricket/js/bootstrap.min.js' %}"></script>
+<link href="{% static 'cricket/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'cricket/css/flat-ui.css' %}" rel="stylesheet">
+<nav class="navbar navbar-inverse navbar-embossed " role="navigation">
+<div class="collapse navbar-collapse" id="navbar-collapse-01">
+    <ul class="nav navbar-nav">           
+      <li class="active"><a href="{% url 'cricket:index' %}">Home</a></li>
+      <li><a href="{% url 'cricket:news' %}">News</a></li>
+    </ul>   
+  </div><!-- /.navbar-collapse -->
+</nav><!-- /navbar -->
+<meta http-equiv="refresh" content="20">
+<meta name="description" content="Cricket Live score and news">
+<div class="jumbotron">
+<div id="score">
 <p><strong>International Matches</strong></p>
 {% for a_match in imp_match %}
 	<p>{{ a_match.si }}</p> 
 	<p>{{ a_match.de }}</p>
 {% endfor %}
+</div>
 <br />
+<div id="matches">
 <p><strong>All Matches (International and National) </strong></p>
 {% for match in match_info %}
-		<a href="{% url 'cricket:localmatch' match.id %}">{{ match.t1 }} vs {{ match.t2 }}</a>
+		<a href="http://localhost:8000/cricket/{{ match.id }}" rel="group" class="fancybox" target="_blank">{{ match.t1 }} vs {{ match.t2 }}
+		</a>
 		<br />
-	
-{% endfor %}
 
- <br />
- <br />
- {% for n in news %}
- 	<a href="{{ n.link }}">{{ n.title }}</a>
- 	<p>{{ n.description }}</p>
- 	<p>{{ n.date }}</p>
 {% endfor %}
+</div>
+</div>
+ <br />
+
+<!--<a href="{% url 'cricket:news' %}" target="_blank"><h3>Cricket News</a>-->
+	

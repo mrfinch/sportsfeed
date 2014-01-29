@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'cricket/js/cricket.js' %}">
+	/*function closeid(id){
+		document.getElementById('news').style.display='none';
+		document.getElementById('more').style.display='block'; 
+	}
+	function openid(id){
+		document.getElementById('news').style.display='block';
+		document.getElementById('more').style.display='none';
+	}*/
+</script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="{% static 'cricket/js/bootstrap.min.js' %}"></script>
+<link href="{% static 'cricket/css/bootstrap.min.css' %}" rel="stylesheet">
+<style>
+	#news{display:none;}
+</style>
+<link href="{% static 'cricket/css/flat-ui.css' %}" rel="stylesheet">
+<nav class="navbar navbar-inverse navbar-embossed " role="navigation">
+<div class="collapse navbar-collapse" id="navbar-collapse-01">
+    <ul class="nav navbar-nav">           
+      <li><a href="{% url 'cricket:index' %}">Home</a></li>
+      <li class="active"><a href="{% url 'cricket:news' %}">News</a></li>
+    </ul>   
+  </div><!-- /.navbar-collapse -->
+</nav><!-- /navbar -->
+
+<!--
+ <dl>
+ {% for n in news %}
+ 	<dt><a href="{{ n.link }}">{{ n.title }}</a></dt>
+ 	<dd><p>{{ n.description }}</p></dd>
+ 	<dd><p>{{ n.date }}</p></dd>
+ 	<hr />
+{% endfor %}
+</dl>
+<br />
+<a href="#news" onclick="openid()" id="more">More</a>
+<div id="news">
+	<a href="#" onclick="closeid()">Collapse</a>
+	<dl>
+	{% for f in fullnews %}
+		<dt><a href="{{ f.link }}">{{ f.title }}</a></dt>
+		<dd><p>{{ f.description }}</p></dd>
+		<dd><p>{{ f.date }}</p></dd>
+		<hr />
+	{% endfor %}	
+	</dl>	
+</div>
+-->
+<div class="panel-group" id="accordion">
+{% for f in fullnews %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+      <a data-toggle="collapse" data-parent="#accordion" href="#{{forloop.counter}}">
+          {{ f.title }}
+        </a>
+      </h4>
+    </div>
+    {% if forloop.counter != 1 %}
+    	<div id="{{forloop.counter}}" class="panel-collapse collapse">
+    {% else %}	
+    	<div id="{{forloop.counter}}" class="panel-collapse collapse in">
+    {% endif %}	
+      <div class="panel-body">	
+      {{ f.description }}<br />
+      {{ f.date }}<br />
+      <a href="{{ f.link }}" target="_blank">Details</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>

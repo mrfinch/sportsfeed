@@ -1,6 +1,17 @@
+{% load staticfiles %}
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="{% static 'cricket/js/bootstrap.min.js' %}"></script>
+<link href="{% static 'cricket/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'cricket/css/flat-ui.css' %}" rel="stylesheet">
+
+<div class="jumbotron">
+<h2>Score</h2>
+{% for a_match in l_match_info  %}
+<title>{{ a_match.de }}</title>
+{% endfor %}
 {% for l_match in l_match_info %}
 <p>{{ l_match.si }}</p>
 <p>{{ l_match.de }}</p>
 {% endfor %}
 <a href="{% url 'cricket:index' %}">Home Page</a>
-
+</div>
